@@ -3,9 +3,7 @@ package
 	import net.flashpunk.World;
 	public class BirthdayWorld extends World
 	{
-		
 
-		
 		public function BirthdayWorld()
 		{
 

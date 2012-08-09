@@ -8,7 +8,8 @@ import net.flashpunk.FP;
 		public function Main()
 		{
 			super(Assets.kScreenWidth, Assets.kScreenHeight, 60, false);
-			FP.console.enable();
+			FP.screen.scale = 2;
+			//FP.console.enable();
 		}
 		
 		override public function init():void

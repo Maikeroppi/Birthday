@@ -17,14 +17,24 @@ package
 		[Embed(source = "../player.png")]
 		private const PlayerGraphic:Class;
 		
-		public var image:Image;
-		public var V_:Point;
+		// Player values
+		public const PlayerHSpeed:Number = 50;
+		public const PlayerVSpeed:Number = 50;
+		public const JumpVelocity:Number = -150;
+		public const Gravity:int = 4;
+		
+		private var image:Image;
+		private var Velocity_:Point;
+		private var Acceleration_:Point;
+		private var TouchingGround_:Boolean;
 		
 		public function Player(StartX:int, StartY:int) 
 		{
 			image = new Image(PlayerGraphic);
 			graphic = image;
-			V_ = new Point;
+			Velocity_ = new Point(0, 0);
+			Acceleration_ = new Point(0, 0);
+			TouchingGround_ = false;
 			
 			x = StartX;
 			y = StartY;
@@ -47,43 +57,55 @@ package
 			if (Input.check(Key.RIGHT))	movement.x = 1;
 			if (Input.check(Key.LEFT)) movement.x = -1;
 			
-			if (Input.check(Key.DOWN)) movement.y = 1;
-			if (Input.check(Key.UP)) movement.y = -1;
+			//if (Input.check(Key.DOWN)) movement.y = 1;
+			if (Input.pressed(Key.UP)) jump();
 			
-			V_.x = 100 * FP.elapsed * movement.x;
-			V_.y = 100 * FP.elapsed * movement.y;
+			Acceleration_.y = Gravity;
+			Velocity_.y += Acceleration_.y;
+					
+			Velocity_.x = PlayerHSpeed * movement.x;
+			//Velocity_.y = PlayerVSpeed * movement.y;
+			//x += Velocity_.x * FP.elapsed;
+			//y += Velocity_.y * FP.elapsed;
+		}
+		
+		protected function jump():void
+		{
+			if (TouchingGround_) 
+			{
+				Velocity_.y = JumpVelocity;
+				TouchingGround_ = false;
+			}
 		}
 		
 		private function updateCollision():void
 		{
-			x += V_.x;
-			
+			x += Velocity_.x * FP.elapsed;			
 			if(collide("level", x, y)) {
-				if (FP.sign(V_.x) > 0) {
+				if (FP.sign(Velocity_.x) > 0) {
 					// Moving Right
-					V_.x = 0;
+					Velocity_.x = 0;
 					x = Math.floor(x / Assets.kTileWidth) * Assets.kTileWidth + Assets.kTileWidth - width;
 				} else {
 					// Moving Left
-					V_.x = 0;
+					Velocity_.x = 0;
 					x = Math.floor(x / Assets.kTileWidth) * Assets.kTileWidth + Assets.kTileWidth;
 				}
 			}
 			
-			y += V_.y;
-			if(collide("level", x, y)) {
-				if (FP.sign(V_.y) > 0) {
+			y += Velocity_.y * FP.elapsed;
+			if (collide("level", x, y)) {
+				TouchingGround_ = true;
+				if (FP.sign(Velocity_.y) > 0) {
 					// Moving Right
-					V_.y = 0;
+					Velocity_.y = 0;
 					y = Math.floor(y / Assets.kTileHeight) * Assets.kTileHeight + Assets.kTileHeight - height;
 				} else {
 					// Moving Left
-					V_.y = 0;
+					Velocity_.y = 0;
 					y = Math.floor(y / Assets.kTileHeight) * Assets.kTileHeight + Assets.kTileHeight;
 				}
 			}
-			
-			
 		}
 	}
 

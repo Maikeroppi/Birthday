@@ -14,8 +14,8 @@ package
 		public static const Tiles:Class;
 		
 		// Set screen size
-		public static const kScreenWidth:int = 640;
-		public static const kScreenHeight:int = 480;
+		public static const kScreenWidth:int = 320;
+		public static const kScreenHeight:int = 240;
 		
 		// Set tile parameters
 		public static const kTileWidth:int = 16;
