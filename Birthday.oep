@@ -5,16 +5,16 @@
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="0" B="0" />
   <LevelDefaultSize>
-    <Width>320</Width>
-    <Height>240</Height>
+    <Width>160</Width>
+    <Height>120</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>320</Width>
-    <Height>240</Height>
+    <Width>160</Width>
+    <Height>120</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>3200</Width>
-    <Height>2400</Height>
+    <Width>1600</Width>
+    <Height>1200</Height>
   </LevelMaximumSize>
   <Filename>C:\Dropbox\Birthday\Birthday.oep</Filename>
   <AngleMode>Radians</AngleMode>
@@ -85,6 +85,51 @@
         <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="player.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="TheBed" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="TheBed.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="TheTable" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="TheTable.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="Chalkboard" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>224</Width>
+        <Height>144</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="Chalkboard.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />

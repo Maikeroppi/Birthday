@@ -39,6 +39,8 @@ package
 			var rawData:ByteArray = new xml;
 			var dataString:String = rawData.readUTFBytes(rawData.length);
 			LevelData = new XML(dataString);
+			var dataList:XMLList = LevelData.Objects.*;
+			var dataElement:XML;
 			
 			// Load tiles
 			Tiles_.loadFromString(LevelData.Tiles[0]);
