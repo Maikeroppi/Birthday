@@ -6,6 +6,7 @@ package
 	import net.flashpunk.Graphic;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.FP;
 	
 	public class BirthdayWorld extends World
 	{
@@ -35,6 +36,7 @@ package
 			
 			var Name:String;
 			for each(dataElement in dataList) {
+				// Convert XML to type String for switch statement as well as EntityMap key
 				Name = dataElement.@Name;
 				trace(Name);
 						
@@ -42,29 +44,10 @@ package
 				case "Player":
 					EntityMap["Player"] = new Player(0, 0);
 					break;
-					
-				//case "TheBed":
-					//EntityMap["TheBed"] = new Entity(0, 0, Assets.Bed);
-					//break;
-					//
-				//case "TheTable":
-					//EntityMap["TheTable"] = new Entity(0, 0, Assets.Table);
-					//break;
-					//
-				//case "Chalkboard":
-					//EntityMap["Chalkboard"] = new Entity(0, 0, Assets.Chalkboard);
-					//break;
-					//
-				//case "Enemy":
-					//EntityMap["Enemy"] = new Entity(0, 0, Assets.EnemyImage);
-					//break;
-					
+
 				default:
 					//trace("No associated entity");
 					if (dataElement.ImageDefinition.@DrawMode == "Image") {
-						//trace(dataElement.@Name);
-						//trace(dataElement.ImageDefinition.@ImagePath);
-						//trace(Assets.ImageDictionary[dataElement.ImageDefinition.@ImagePath]);
 						EntityMap[Name] = new Entity(
 							dataElement.Origin.@X, dataElement.Origin.@Y); 
 						EntityMap[Name].graphic = new Image(Assets.ImageDictionary[dataElement.ImageDefinition.@ImagePath]);
@@ -92,7 +75,7 @@ package
 		
 		override public function begin():void
 		{
-			var level:Level = new Level(Assets.Bedroom);
+			var level:Level = new Level(Assets.Level1);
 			var dataList:XMLList = level.LevelData.Objects.*;
 			var dataElement:XML;
 			var currentEntity:Entity;
@@ -109,7 +92,10 @@ package
 				add(currentEntity);
 			}
 			
-			add(level);			
+			add(level);
+			FP.camera.x = 0;
+			FP.camera.y = 0;
+			
 			super.begin();
 		}
 	}

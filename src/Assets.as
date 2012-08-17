@@ -35,12 +35,16 @@ package
 		[Embed(source = "../TheTable.png")]
 		public static const Table:Class;
 		
+		[Embed(source = "../Door.png")]
+		public static const Door:Class;
+		
 		public static var ImageDictionary:Object = {
 			"Tiles.png":Assets.Tiles
 			, "Chalkboard.png":Assets.Chalkboard
 			, "enemy.png":Assets.EnemyImage
 			, "TheBed.png":Assets.Bed
 			, "TheTable.png":Assets.Table
+			, "Door.png":Assets.Door
 		};
 			
 		// Set screen size

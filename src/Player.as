@@ -18,7 +18,7 @@ package
 		private const PlayerGraphic:Class;
 		
 		// Player values
-		public const PlayerHSpeed:Number = 50;
+		public const PlayerHSpeed:Number = 70;
 		public const PlayerVSpeed:Number = 50;
 		public const JumpVelocity:Number = -150;
 		public const Gravity:int = 4;
@@ -106,6 +106,12 @@ package
 					y = Math.floor(y / Assets.kTileHeight) * Assets.kTileHeight + Assets.kTileHeight;
 				}
 			}
+			
+			// Update camera
+			FP.camera.x = x - (Assets.kScreenWidth / 2);
+			
+			if (FP.camera.x < 0) FP.camera.x = 0;
+			
 		}
 	}
 
