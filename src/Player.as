@@ -23,23 +23,37 @@ package
 		public const JumpVelocity:Number = -150;
 		public const Gravity:int = 4;
 		
-		private var image:Image;
+		private var image_:Image;
 		private var Velocity_:Point;
 		private var Acceleration_:Point;
 		private var TouchingGround_:Boolean;
 		
+		private var CurrentLevelWidth_:Number;
+		private var TheWorld_:BirthdayWorld;
+		
 		public function Player(StartX:int, StartY:int) 
 		{
-			image = new Image(PlayerGraphic);
-			graphic = image;
+			image_ = new Image(PlayerGraphic);
+			graphic = image_;
 			Velocity_ = new Point(0, 0);
 			Acceleration_ = new Point(0, 0);
 			TouchingGround_ = false;
+			CurrentLevelWidth_ = Assets.kScreenWidth;
 			
 			x = StartX;
 			y = StartY;
 			setHitbox(Assets.kTileWidth, Assets.kTileHeight, 0, 0);
 			type = "player";
+		}
+		
+		public function SetLevelWidth(Width:Number):void 
+		{
+			CurrentLevelWidth_ = Width;
+		}
+		
+		public function SetWorld(World:BirthdayWorld):void
+		{
+			TheWorld_ = World;
 		}
 		
 		override public function update():void 
@@ -107,10 +121,25 @@ package
 				}
 			}
 			
+			// Did we hit the door?
+			if (collide("door", x, y)) {
+				TheWorld_.changeLevel(Assets.Level1);
+			}
+			
+			// Don't let player go off the level
+			if(x < 0) x = 0;
+			if (x > (CurrentLevelWidth_ - width)) x = CurrentLevelWidth_ - width;
+			
 			// Update camera
 			FP.camera.x = x - (Assets.kScreenWidth / 2);
 			
+			// Don't go past left edge of level
 			if (FP.camera.x < 0) FP.camera.x = 0;
+			
+			// Don't go past right edge of level
+			var WidthFromEdge:Number = CurrentLevelWidth_ - Assets.kScreenWidth;
+			if (FP.camera.x > WidthFromEdge) FP.camera.x = WidthFromEdge;
+			
 			
 		}
 	}

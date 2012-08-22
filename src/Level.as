@@ -20,8 +20,6 @@ package
 		
 		public function Level(xml:Class)
 		{
-			
-					
 			type = "level";
 			
 			loadLevel(xml);
@@ -51,8 +49,7 @@ package
 			
 			graphic = Tiles_;
 			layer = 1;
-			
-				
+							
 			Grid_ = new Grid(LevelWidth_, LevelHeight_, Assets.kTileWidth, Assets.kTileHeight, 0, 0);
 			mask = Grid_;
 			
